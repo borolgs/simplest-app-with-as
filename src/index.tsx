@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { useStore } from 'effector-react';
+import { createEvent, createStore } from 'effector-logger';
+
+export const setValue = createEvent<string>();
+export const $value = createStore('...').on(setValue, (_, v) => v);
+
 function App() {
-  const [value, setValue] = React.useState('...');
+  const value = useStore($value);
   React.useEffect(() => {
     fetch('/proxy')
       .then((res) => res.json())
