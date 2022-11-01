@@ -6,7 +6,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   webpackClientDev: (config) => {
     // config.optimization.runtimeChunk = 'single';
-    config.output.publicPath = 'auto';
+    config.output.publicPath = '/';
 
     return config;
   },
@@ -28,6 +28,10 @@ module.exports = {
       devMiddleware: {
         publicPath: '/',
       },
+      proxy: {
+        '/api/**': { target: 'http://localhost:3000' },
+      },
+      historyApiFallback: true,
     };
   },
 };
