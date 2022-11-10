@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const packageJsonDeps = require('./package.json').dependencies;
 
 module.exports = {
   webpackClientDev: (config) => {
@@ -17,6 +19,19 @@ module.exports = {
     config.plugins.push(
       new HTMLWebpackPlugin({
         template: './src/index.html',
+      }),
+      new ModuleFederationPlugin({
+        name: 'host',
+        shared: {
+          react: {
+            singleton: true,
+            requiredVersion: packageJsonDeps.react,
+          },
+          'react-dom': {
+            singleton: true,
+            requiredVersion: packageJsonDeps['react-dom'],
+          },
+        },
       })
     );
 
