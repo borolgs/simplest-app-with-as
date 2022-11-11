@@ -1,4 +1,7 @@
-import { RemoteComponent } from './remote-component';
+// import { RemoteComponent } from './remote-component';
+
+import { RemoteComponent } from './components/remote-component';
+import { config } from './config';
 
 export const App = () => {
   return (

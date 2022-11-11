@@ -1,0 +1,7 @@
+.errorMessage {
+    /* text-align: center; */
+}
+
+.errorMessageTitle {
+    margin-bottom: var(--gap-xs);
+}

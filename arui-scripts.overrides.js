@@ -43,6 +43,13 @@ module.exports = {
       devMiddleware: {
         publicPath: '/',
       },
+      proxy: {
+        '/zalfa/**': {
+          target: 'http://localhost:3001/',
+          secure: false,
+          changeOrigin: true,
+        },
+      },
     };
   },
 };
